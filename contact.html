@@ -3,26 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EBG3PQHXP3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EBG3PQHXP3');
+</script>
 <title>聯絡 | Ray的業務日嚐</title>
 <meta name="description" content="聯絡 Ray的業務日嚐——合作邀約或想分享你的業務故事,歡迎留言。">
-<link rel="canonical" href="https://your-domain.com/contact.html">
+<link rel="canonical" href="https://raybizdev.com/contact.html">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ray的業務日嚐">
 <meta property="og:title" content="聯絡 | Ray的業務日嚐">
 <meta property="og:description" content="合作邀約或想分享你的業務故事,歡迎留言。">
-<meta property="og:url" content="https://your-domain.com/contact.html">
+<meta property="og:url" content="https://raybizdev.com/contact.html">
 <meta property="og:locale" content="zh_TW">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://raybizdev.com/images/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://raybizdev.com/images/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="noindex">
 
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <header class="site-header">
   <div class="container">
-    <a href="index.html" class="brand">Ray的業務<span>日嚐</span></a>
+    <a href="index.html" class="brand"><img src="images/ray-logo.png" alt="" class="brand-logo" width="143" height="72"><span class="brand-name">Ray的業務<span>日嚐</span></span></a>
     <button class="nav-toggle" aria-label="開啟選單">&#9776;</button>
     <ul class="nav-links">
       <li><a href="index.html">首頁</a></li>
@@ -35,9 +51,9 @@
 
 <main class="plain-page">
   <h1>聯絡我</h1>
-  <p>有想法、合作邀約,或是想分享你的業務故事?歡迎留言給我。</p>
+  <p>如有任何想法、合作邀約，或是分享你的業務故事互相交流，歡迎留言給我。</p>
 
-  <form class="contact-form">
+  <form class="contact-form" action="https://formspree.io/f/mwvgboeo" method="POST">
     <div>
       <label for="name">姓名</label>
       <input type="text" id="name" name="name" required>
@@ -51,20 +67,18 @@
       <textarea id="message" name="message" required></textarea>
     </div>
     <button type="submit" class="btn" style="align-self:flex-start;">送出訊息</button>
-    <p class="form-note">這是示範表單,尚未連接後端寄送功能。</p>
+    <p class="form-note" role="status" aria-live="polite"></p>
   </form>
-
-  <div class="social-links">
-    <a href="#" aria-label="LinkedIn">LinkedIn</a>
-    <a href="#" aria-label="Instagram">Instagram</a>
-    <a href="#" aria-label="Facebook">Facebook</a>
-  </div>
 </main>
 
 <footer class="site-footer">
   <div class="container">
     <span>&copy; 2026 Ray的業務日嚐. All rights reserved.</span>
-    <span><a href="contact.html">聯絡我們</a></span>
+    <span class="footer-social">
+      <a href="https://www.facebook.com/profile.php?id=61584711959331" target="_blank" rel="noopener noreferrer" aria-label="Facebook 粉絲專頁" title="Facebook 粉絲專頁">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.44 2.9h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+      </a>
+    </span>
   </div>
 </footer>
 

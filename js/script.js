@@ -13,11 +13,40 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var noteEl = form.querySelector(".form-note");
-      if (noteEl) {
-        noteEl.textContent = "感謝您的訊息!這是示範表單,尚未連接後端寄送功能。";
-        noteEl.style.color = "#b8860b";
-      }
-      form.reset();
+      var submitBtn = form.querySelector("button[type=submit]");
+      if (submitBtn) submitBtn.disabled = true;
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      })
+        .then(function (response) {
+          if (response.ok) {
+            if (noteEl) {
+              noteEl.textContent = "感謝您的訊息!我會盡快回覆。";
+              noteEl.style.color = "#2e7d32";
+            }
+            if (typeof gtag === "function") {
+              gtag("event", "contact_form_submit");
+            }
+            form.reset();
+          } else {
+            if (noteEl) {
+              noteEl.textContent = "傳送失敗,請稍後再試,或直接寄信給我。";
+              noteEl.style.color = "#c62828";
+            }
+          }
+        })
+        .catch(function () {
+          if (noteEl) {
+            noteEl.textContent = "傳送失敗,請確認網路連線後再試一次。";
+            noteEl.style.color = "#c62828";
+          }
+        })
+        .finally(function () {
+          if (submitBtn) submitBtn.disabled = false;
+        });
     });
   }
 
@@ -35,6 +64,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // 全站停用右鍵選單與複製（表單輸入框除外，讓聯絡表單能正常打字）
+  document.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  function inFormField(e) {
+    var t = e.target;
+    return t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA");
+  }
+  document.addEventListener("copy", function (e) { if (!inFormField(e)) e.preventDefault(); });
+  document.addEventListener("cut", function (e) { if (!inFormField(e)) e.preventDefault(); });
+  document.addEventListener("dragstart", function (e) { e.preventDefault(); });
+
   // Blog search + category filter
   var grid = document.getElementById("post-grid");
   if (grid) {
@@ -48,7 +87,8 @@ document.addEventListener("DOMContentLoaded", function () {
       var term = (searchInput && searchInput.value || "").trim().toLowerCase();
       var visible = 0;
       cards.forEach(function (card) {
-        var matchCat = activeCat === "全部" || card.getAttribute("data-cat") === activeCat;
+        var cats = (card.getAttribute("data-cat") || "").split(",");
+        var matchCat = activeCat === "全部" || cats.indexOf(activeCat) !== -1;
         var matchText = term === "" || card.textContent.toLowerCase().indexOf(term) !== -1;
         var show = matchCat && matchText;
         card.style.display = show ? "" : "none";
