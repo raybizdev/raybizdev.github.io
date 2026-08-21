@@ -111,3 +111,60 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+
+/* ── 分享按鈕 ── */
+document.addEventListener("DOMContentLoaded", function () {
+  var box = document.querySelector(".share-box");
+  if (!box) return;
+
+  var canonical = document.querySelector('link[rel="canonical"]');
+  var url = (canonical && canonical.href) || window.location.href;
+
+  var lineBtn = box.querySelector(".share-line");
+  if (lineBtn) {
+    lineBtn.href = "https://social-plugins.line.me/lineit/share?url=" + encodeURIComponent(url);
+  }
+
+  var msgBtn = box.querySelector(".share-messenger");
+  if (msgBtn) {
+    msgBtn.href = "https://www.facebook.com/dialog/send?app_id=291494419107518&link=" +
+      encodeURIComponent(url) + "&redirect_uri=" + encodeURIComponent(url);
+  }
+
+  var copyBtn = box.querySelector(".share-copy");
+  var toast = box.querySelector(".copy-toast");
+  if (!copyBtn) return;
+
+  function flash() {
+    copyBtn.classList.add("copied");
+    if (toast) toast.classList.add("show");
+    setTimeout(function () {
+      copyBtn.classList.remove("copied");
+      if (toast) toast.classList.remove("show");
+    }, 1800);
+  }
+
+  function fallback() {
+    var ta = document.createElement("textarea");
+    ta.value = url;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.opacity = "0";
+    ta.style.webkitUserSelect = "text";
+    ta.style.userSelect = "text";
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, ta.value.length);
+    try { document.execCommand("copy"); flash(); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  copyBtn.addEventListener("click", function () {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(url).then(flash).catch(fallback);
+    } else {
+      fallback();
+    }
+  });
+});
