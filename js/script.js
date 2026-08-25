@@ -112,28 +112,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-/* ── 分享按鈕 ── */
+/* ── 複製連結按鈕 ── */
 document.addEventListener("DOMContentLoaded", function () {
   var box = document.querySelector(".share-box");
   if (!box) return;
 
+  var copyBtn = box.querySelector(".share-copy");
+  if (!copyBtn) return;
+
   var canonical = document.querySelector('link[rel="canonical"]');
   var url = (canonical && canonical.href) || window.location.href;
-
-  var lineBtn = box.querySelector(".share-line");
-  if (lineBtn) {
-    lineBtn.href = "https://social-plugins.line.me/lineit/share?url=" + encodeURIComponent(url);
-  }
-
-  var msgBtn = box.querySelector(".share-messenger");
-  if (msgBtn) {
-    msgBtn.href = "https://www.facebook.com/dialog/send?app_id=291494419107518&link=" +
-      encodeURIComponent(url) + "&redirect_uri=" + encodeURIComponent(url);
-  }
-
-  var copyBtn = box.querySelector(".share-copy");
   var toast = box.querySelector(".copy-toast");
-  if (!copyBtn) return;
 
   function flash() {
     copyBtn.classList.add("copied");
