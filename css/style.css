@@ -642,18 +642,3 @@ input, textarea {
   .share-box a { width: 36px; height: 36px; }
 }
 
-/* ── 首頁 hero 的「關於我」段落 ── */
-.hero-about {
-  margin: 0 0 36px;
-  padding: 28px 0 0;
-  border-top: 1px solid var(--color-border);
-}
-
-.hero-about p {
-  font-size: 0.97rem;
-  line-height: 1.95;
-  color: var(--color-muted);
-  margin: 0 0 16px;
-}
-
-.hero-about p:last-child { margin-bottom: 0; }
