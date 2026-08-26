@@ -642,3 +642,25 @@ input, textarea {
   .share-box a { width: 36px; height: 36px; }
 }
 
+
+/* ── 首頁 hero 的分類標籤 ── */
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 32px 0 0;
+}
+
+.hero-tags a {
+  font-size: 0.9rem;
+  color: var(--color-navy);
+  background: rgba(20, 33, 61, 0.055);
+  padding: 7px 15px;
+  border-radius: 999px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.hero-tags a:hover {
+  background: var(--color-navy);
+  color: #fff;
+}
