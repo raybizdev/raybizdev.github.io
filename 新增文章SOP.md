@@ -139,7 +139,7 @@ website/
 
 <p>一段內文文字。</p>
 
-<blockquote>想強調的一句話，會顯示成引言區塊。</blockquote>
+<blockquote><strong>想強調的一句話，會顯示成引言區塊（內容一律加粗）。</strong></blockquote>
 
 <ul>
   <li>條列重點一</li>
@@ -174,6 +174,17 @@ website/
 4. **同步到 Notion** — 在「Ray的小帳 → 內容行事曆」資料庫新增一筆，填入標題、狀態、文章分類、撰寫／發佈時間、貼文連結、靈感來源，頁面內放文章重點摘要
 
 **首頁卡片規則**：`index.html` 固定只顯示**最新 9 篇**（3×3 排版最整齊），新增一篇時要把最舊的那張卡片移除。`blog.html` 則保留全部文章，不用刪。首頁最下方有「查看所有文章 →」按鈕導向 blog.html。
+
+**日期規則**：發佈日期一律用**當天的實際日期**，不往前補、也不往後排。不要為了讓更新頻率看起來平均而自行推算日期。日期會出現在四個地方，全部要一致：
+
+| 位置 | 格式 |
+|---|---|
+| 文章頁 `<div class="post-meta">` | `2026/09/15` |
+| 文章頁 `<meta property="article:published_time">` 與 JSON-LD 的 `datePublished` | `2026-09-15` |
+| `index.html`／`blog.html` 卡片的 `post-meta` | `2026/09/15` |
+| `sitemap.xml` 的 `<lastmod>` | `2026-09-15` |
+
+**引言樣式**：`<blockquote>` 內容統一加粗，即 `<blockquote><strong>…</strong></blockquote>`。
 
 ---
 
